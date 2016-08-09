@@ -1,7 +1,7 @@
 USE analytics
 
 DECLARE @BudgetYear int = 2016
-DECLARE @BudgetMonth int = 5
+DECLARE @BudgetMonth int = 6
 
 SELECT  t3.[CalendarMonth] as BudgetMonth, t3.[CalendarYear] as BudgetYear
 , SUM(t1.amount) as Expense --, t2.GLCode 
@@ -42,8 +42,9 @@ AND t3.[CalendarMonth] <= @BudgetMonth
 and t2.entitycode = 'HBC'
 AND t2.fundcode = '025'  
 --AND t2.GLCode NOT IN ('30010', '30058', '30075', '30046')
-AND t2.GLCode  IN ('24225', '24230', '24233',  '24235', '24272', '15026','15146','15151')
-
+--AND t2.GLCode  IN ('24225', '24230', '24233',  '24235', '24272', '15026','15146','15151')
+AND t2.GLCode  IN ('24225', '24230', '24233',  '24235', '24272', '15026','15146','15151','15131' 
+,'15141','15146' ,'53130','53132'   )
 --AND t2.DepartmentCode <> '9120'
 AND t2.TenantID = 3
 GROUP BY  t3.[CalendarMonth], t3.[CalendarYear] --, t2.GLCode 
@@ -64,7 +65,10 @@ and t2.entitycode = 'HBC'
 AND t2.fundcode = '025'  
 --AND t2.GLCode  IN ('30010', '30058', '30075', '30046')
 
- AND t2.GLCode  IN ('30030','30042','31025','32010','32012','35115','35004', '37010','37020','37021','37025')
+ AND t2.GLCode  IN ('30030','30042','31025','32010','32012','35115','35004', 
+ '37010','37020','37021','37025'
+ ,'35135'
+ )
 --AND t2.DepartmentCode = '9120'
 AND t2.TenantID = 3
 GROUP BY  t3.[CalendarMonth], t3.[CalendarYear]
